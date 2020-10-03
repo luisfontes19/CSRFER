@@ -3,7 +3,6 @@
 # Edit at https://www.gitignore.io/?templates=node
 
 lib/
-types/
 
 .DS_Store
 .vscode
