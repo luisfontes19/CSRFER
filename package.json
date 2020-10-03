@@ -1,6 +1,6 @@
 {
   "name": "csrfer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Luis Fontes",
   "license": "MIT",
   "description": "Small tool to create CSRF payloads based on vulnerable requests",
