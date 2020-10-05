@@ -11,7 +11,7 @@ export interface GeneratorData {
     autoSubmit: boolean;
     visible: boolean;
     useTemplate: boolean;
-    template: string;
+    template: string | undefined;
 }
 export declare class Generator {
     static forbiddenHeaders: string[];

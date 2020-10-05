@@ -50,7 +50,6 @@
   },
   "dependencies": {
     "he": "^1.2.0",
-    "xxexploiter": "^0.1.8",
     "yargs": "^15.4.1"
   }
 }

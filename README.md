@@ -64,6 +64,27 @@ Examples:
 
 ```
 
+## Example output
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>This is Hello World page</title>
+</head>
+
+<body>
+  <h1>Hello World</h1>
+
+  <form id="csrf" name="csrf" action="http://localhost:8000/1.php" method="POST"
+    enctype="application/x-www-form-urlencoded"><input id='destination' name='destination' type='hidden'
+      value='123-123123-123' /><br><input id='amount' name='amount' type='hidden' value='50&#x20AC;' /><br><input
+      type='submit' value='submit'></form>
+</body>
+
+</html>
+```
+
 ## License
 
 This project is MIT licensed
