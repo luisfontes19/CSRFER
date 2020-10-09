@@ -25,7 +25,9 @@ if (parsedRequest) {
     mode: (args.m as string || "").toLowerCase() === "fetch" ? MODE.FETCH : MODE.FORM,
     template: template,
     useTemplate: args.T as boolean,
-    visible: args.s as boolean
+    visible: args.s as boolean,
+
+    className: args.c as string
   };
 
   const htmlPayload = Generator.generate(params);

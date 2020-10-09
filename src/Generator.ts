@@ -17,6 +17,7 @@ export interface GeneratorData {
   visible: boolean;
   useTemplate: boolean;
   template: string | undefined;
+  className: string;
 }
 
 export class Generator {
@@ -49,6 +50,8 @@ export class Generator {
 
   public static PLACEHOLDER = "{{CONTENT}}";
   public static DEFAULT_TEMPLATE = `<!DOCTYPE html><html><head><title>Hi There</title></head><body><h1>DO NOT CLICK THE BUTTON</h1>${Generator.PLACEHOLDER}</body></html>`
+
+  public static DEFAULT_CLASS = "csrf-input";
 
   public static generate(data: GeneratorData): string {
 
@@ -131,14 +134,15 @@ export class Generator {
     return decodedData;
   }
 
-  public static generateFormTag(name: string, value: string, visible: boolean): string {
+  public static generateFormTag(name: string, value: string, visible: boolean, htmlclass: string): string {
     const type = visible ? "text" : "hidden";
+    const classname = htmlclass || Generator.DEFAULT_CLASS;
     const htmlEncodedKey = he.encode(name);
 
     let htmlPayload = "";
 
     if (visible) htmlPayload += htmlEncodedKey; //input label
-    htmlPayload += `<input id='${htmlEncodedKey}' name='${htmlEncodedKey}' type='${type}' value='${he.encode(value)}' /><br>`;
+    htmlPayload += `<input id='${htmlEncodedKey}' name='${htmlEncodedKey}' type='${type}' value='${he.encode(value)}' class='${classname}' /><br>`;
 
     return htmlPayload;
   }
@@ -153,7 +157,7 @@ export class Generator {
     const decodedData = Generator.formParse(data.body, decode);
 
     Object.keys(decodedData).forEach(k => {
-      htmlPayload += Generator.generateFormTag(k, decodedData[k], data.visible);
+      htmlPayload += Generator.generateFormTag(k, decodedData[k], data.visible, data.className);
     });
 
     htmlPayload += data.autoSubmit ? "<script>document.getElementById('csrf').submit()</script>" : "<input type='submit' value='submit'>";

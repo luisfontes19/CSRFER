@@ -13,9 +13,6 @@ const menu = yargs
   .alias('a', 'autosubmit')
   .describe('a', 'Auto submit the request on page load')
 
-  .alias('s', 'show')
-  .describe('s', 'Show the form inputs (only for form mode)')
-
   .alias('o', 'output')
   .nargs('o', 1)
   .describe('o', 'Output the payload to the specified file instead of STDOUT')
@@ -27,6 +24,13 @@ const menu = yargs
   .alias('T', 'defaulttemplate')
   .describe('T', 'Use this option if you want the code to be injected into a default html page.')
 
+  .alias('c', 'class')
+  .nargs('c', 1)
+  .describe('c', 'html class name to add to all input fields (for form mode only)')
+
+  .alias('s', 'show')
+  .describe('s', 'Show the form inputs (form mode only)')
+
   .demandOption(['r'])
 
   .help('h')
@@ -35,7 +39,8 @@ const menu = yargs
   .example('$0 -r req.txt -m form -a', 'Automatically submit a form request')
   .example('$0 -r req.txt -m form -s', 'Generate and shows a form to be submitted manually')
   .example('$0 -r req.txt -m fetch -t my_template.html', 'Generates a fetch request and uses the supplied template page')
-  .epilog("")
+  .epilog("content from -c is not sanitized in the html, you can use this to escape the class string  and inject custom code if needed in the inputs, " +
+    "but have in mind that this will apply to all generated inputs")
 
   .wrap(process.stdout.columns);
 
